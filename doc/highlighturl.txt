@@ -1,0 +1,117 @@
+*highlighturl.txt*	URL highlight everywhere
+
+Version: 0.0
+Author: itchyny (https://github.com/itchyny)
+License: MIT License
+Repository: https://github.com/itchyny/vim-highlighturl
+Last Change: 2015/01/10 18:46:06.
+
+CONTENTS					*highlighturl-contents*
+
+Introduction				|highlighturl-introduction|
+Options					|highlighturl-options|
+Functions				|highlighturl-functions|
+Examples				|highlighturl-examples|
+Changelog				|highlighturl-changelog|
+
+==============================================================================
+INTRODUCTION					*highlighturl-introduction*
+This *highlighturl* plugin highlights URLs everywhere. That's it.
+
+------------------------------------------------------------------------------
+OPTIONS						*highlighturl-options*
+
+g:highlighturl_enable				*g:highlighturl_enable*
+	Enables the URL highlight everywhere. You can set this variable to 0
+	in vimrc if you do not want the URL highlight. If you want to enable
+	or disable the highlight feature after starting up, instead of
+	setting this variable, use the functions |highlighturl#enable()| and
+	|highlighturl#disable()|.
+	The default value is 1.
+
+g:highlighturl_pattern				*g:highlighturl_pattern*
+	You can configure the URL pattern with this variable. Set a regular
+	expression to this variable.
+	The default value is complicated. You can see the value by
+	|highlighturl#default_pattern()|.
+
+g:highlighturl_url_priority			*g:highlighturl_url_priority*
+	The priority used for the URL highlight.
+	The default value is 15.
+
+g:highlighturl_url_cursor_priority		*g:highlighturl_url_cursor_priority*
+	The priority used for the URL under the cursor line.
+	The default value is 20.
+
+g:highlighturl_underline			*g:highlighturl_underline*
+	If you do not want the under line for the URL highlight, set this
+	variable to 0.
+	The default value is 1.
+
+g:highlighturl_ctermfg				*g:highlighturl_ctermfg*
+	The highlight color of the URL highlight for ctermfg.
+	The default value is 44 if |'background'| is dark and 31 otherwise.
+
+g:highlighturl_guifg				*g:highlighturl_guifg*
+	The highlight color of the URL highlight for guifg.
+	The default value is #00dfdf if |'background'| is dark and #002f5f
+	otherwise.
+
+------------------------------------------------------------------------------
+FUNCTIONS					*highlighturl-functions*
+
+highlighturl#enable()				*highlighturl#enable()*
+	Enables the URL highlight.
+
+highlighturl#disable()				*highlighturl#disable()*
+	Disables the URL highlight.
+
+highlighturl#toggle()				*highlighturl#toggle()*
+	Toggles the URL highlight.
+
+highlighturl#enable_local()			*highlighturl#enable_local()*
+	Enables the URL highlight in the current window.
+
+highlighturl#disable_local()			*highlighturl#disable_local()*
+	Disables the URL highlight in the current window.
+
+highlighturl#toggle_local()			*highlighturl#toggle_local()*
+	Toggles the URL highlight in the current window.
+
+highlighturl#default_pattern()			*highlighturl#default_pattern()*
+	Returns the default URL pattern.
+
+------------------------------------------------------------------------------
+EXAMPLES					*highlighturl-examples*
+
+Do not load this plugin. >
+	let g:loaded_highlighturl = 1
+<
+Load this plugin (so that you can enable the highlight later) but disable the
+URL highlight. >
+	let g:highlighturl_enable = 0
+<
+Remove the underline from the URL highlight. >
+	let g:highlighturl_underline = 0
+<
+Disable the URL highlight in markdown and text filetypes. >
+	augroup highlighturl-filetype
+	  autocmd!
+	  autocmd FileType markdown,text call highlighturl#disable_local()
+	augroup END
+<
+Enable the URL highlight only in JavaScript and HTML filetypes. >
+	let g:highlighturl_enable = 0
+	augroup highlighturl-filetype
+	  autocmd!
+	  autocmd FileType javascript,html call highlighturl#enable_local()
+	augroup END
+<
+==============================================================================
+CHANGELOG					*highlighturl-changelog*
+
+0.0	2014-01-11
+	- Initial commit.
+
+==============================================================================
+vim:tw=78:sw=4:ts=8:ft=help:norl:noet:

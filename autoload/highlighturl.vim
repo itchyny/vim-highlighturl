@@ -2,14 +2,14 @@
 " Filename: autoload/highlighturl.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2015/01/10 18:48:06.
+" Last Change: 2015/01/22 20:18:12.
 " =============================================================================
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 function! s:get(name, default) abort
-  return get(w:, 'highlighturl_' . a:name, get(g:, 'highlighturl_' . a:name, a:default))
+  return get(b:, 'highlighturl_' . a:name, get(g:, 'highlighturl_' . a:name, a:default))
 endfunction
 
 function! s:highlight_name(cursor) abort
@@ -22,7 +22,7 @@ function! highlighturl#default_pattern() abort
         \.'\%(([&:#*@~%_\-=?!+;/.0-9A-Za-z]*)\)\?'
         \.'\%({\%([&:#*@~%_\-=?!+;/.0-9A-Za-z]*\|{[&:#*@~%_\-=?!+;/.0-9A-Za-z]*}\)}\)\?'
         \.'\%(\[[&:#*@~%_\-=?!+;/.0-9A-Za-z]*\]\)\?'
-        \.'\)*[/0-9A-Za-z]*\%(:\d\d*\/\?\)\?'
+        \.'\)*[-/0-9A-Za-z]*\%(:\d\d*\/\?\)\?'
 endfunction
 
 function! highlighturl#get_url_highlight(cursor) abort
@@ -101,7 +101,7 @@ function! highlighturl#refresh() abort
   let save_winnr = winnr()
   for winnr in range(1, winnr('$'))
     silent! noautocmd execute winnr 'wincmd w'
-    unlet! w:highlighturl_enable
+    unlet! b:highlighturl_enable
     call highlighturl#set_url_match()
   endfor
   silent! noautocmd execute save_winnr 'wincmd w'
@@ -130,13 +130,13 @@ function! highlighturl#toggle() abort
 endfunction
 
 function! highlighturl#enable_local() abort
-  let w:highlighturl_enable = 1
+  let b:highlighturl_enable = 1
   call highlighturl#set_url_match()
   return ''
 endfunction
 
 function! highlighturl#disable_local() abort
-  let w:highlighturl_enable = 0
+  let b:highlighturl_enable = 0
   call highlighturl#set_url_match()
   return ''
 endfunction

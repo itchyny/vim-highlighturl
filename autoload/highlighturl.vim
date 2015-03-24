@@ -2,11 +2,13 @@
 " Filename: autoload/highlighturl.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2015/01/22 20:18:12.
+" Last Change: 2015/03/25 08:20:27.
 " =============================================================================
 
 let s:save_cpo = &cpo
 set cpo&vim
+
+let s:urlcursor = v:version < 704 || v:version == 704 && !has('patch682')
 
 function! s:get(name, default) abort
   return get(b:, 'highlighturl_' . a:name, get(g:, 'highlighturl_' . a:name, a:default))
@@ -37,7 +39,9 @@ endfunction
 
 function! highlighturl#set_highlight() abort
   call highlighturl#set_url_highlight()
-  call highlighturl#set_urlcursor_highlight()
+  if s:urlcursor
+    call highlighturl#set_urlcursor_highlight()
+  endif
 endfunction
 
 function! highlighturl#set_url_highlight() abort
@@ -70,7 +74,9 @@ function! highlighturl#set_url_match() abort
     endif
     let pattern = s:get('pattern', highlighturl#default_pattern())
     call matchadd(s:highlight_name(0), pattern, s:get('url_priority', 15))
-    call highlighturl#set_urlcursor_match()
+    if s:urlcursor
+      call highlighturl#set_urlcursor_match()
+    endif
   endif
 endfunction
 

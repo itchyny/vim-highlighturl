@@ -2,7 +2,7 @@
 " Filename: plugin/highlighturl.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2015/01/10 18:48:18.
+" Last Change: 2015/03/25 02:53:16.
 " =============================================================================
 
 if exists('g:loaded_highlighturl') || v:version < 700 || !exists('*matchadd')
@@ -17,7 +17,9 @@ augroup highlighturl
   autocmd!
   autocmd VimEnter,ColorScheme * call highlighturl#set_highlight()
   autocmd VimEnter,FileType,BufEnter,WinEnter * call highlighturl#set_url_match()
-  autocmd CursorMoved,CursorMovedI * call highlighturl#check_urlcursor()
+  if v:version < 704 || v:version == 704 && !has('patch682')
+    autocmd CursorMoved,CursorMovedI * call highlighturl#check_urlcursor()
+  endif
 augroup END
 
 let &cpo = s:save_cpo

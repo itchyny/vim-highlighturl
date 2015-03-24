@@ -4,7 +4,7 @@ Version: 0.1
 Author: itchyny (https://github.com/itchyny)
 License: MIT License
 Repository: https://github.com/itchyny/vim-highlighturl
-Last Change: 2015/01/24 00:10:30.
+Last Change: 2015/03/25 08:22:38.
 
 CONTENTS					*highlighturl-contents*
 
@@ -112,6 +112,7 @@ CHANGELOG					*highlighturl-changelog*
 
 0.1	2014-01-24
 	- Use buffer variables instead of window variables.
+	- Do not call highlighturl#check_urlcursor() for newer Vim.
 
 0.0	2014-01-11
 	- Initial commit.

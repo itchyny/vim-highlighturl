@@ -2,7 +2,7 @@
 " Filename: autoload/highlighturl.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2015/03/25 08:20:27.
+" Last Change: 2015/03/25 08:24:29.
 " =============================================================================
 
 let s:save_cpo = &cpo
@@ -12,10 +12,6 @@ let s:urlcursor = v:version < 704 || v:version == 704 && !has('patch682')
 
 function! s:get(name, default) abort
   return get(b:, 'highlighturl_' . a:name, get(g:, 'highlighturl_' . a:name, a:default))
-endfunction
-
-function! s:highlight_name(cursor) abort
-  return a:cursor ? 'HighlightUrlCursor': 'HighlightUrl'
 endfunction
 
 function! highlighturl#default_pattern() abort
@@ -45,7 +41,7 @@ function! highlighturl#set_highlight() abort
 endfunction
 
 function! highlighturl#set_url_highlight() abort
-  execute 'highlight' s:highlight_name(0) highlighturl#get_url_highlight(0)
+  execute 'highlight HighlightUrl' highlighturl#get_url_highlight(0)
 endfunction
 
 function! highlighturl#set_urlcursor_highlight() abort
@@ -55,12 +51,12 @@ function! highlighturl#set_urlcursor_highlight() abort
   let outstr = substitute(out, '\n', '', 'g')
   let cbg = matchstr(outstr, 'ctermbg=\S\+')
   let gbg = matchstr(outstr, 'guibg=\S\+')
-  execute 'highlight' s:highlight_name(1) highlighturl#get_url_highlight(1) cbg gbg
+  execute 'highlight HighlightUrlCursor' highlighturl#get_url_highlight(1) cbg gbg
 endfunction
 
 function! highlighturl#delete_url_match() abort
   for m in getmatches()
-    if m.group ==# s:highlight_name(0) || m.group ==# s:highlight_name(1)
+    if m.group ==# 'HighlightUrl' || m.group ==# 'HighlightUrlCursor'
       call matchdelete(m.id)
     endif
   endfor
@@ -69,11 +65,11 @@ endfunction
 function! highlighturl#set_url_match() abort
   call highlighturl#delete_url_match()
   if s:get('enable', get(s:, 'enable', 1))
-    if !hlexists(s:highlight_name(0))
+    if !hlexists('HighlightUrl')
       call highlighturl#set_highlight()
     endif
     let pattern = s:get('pattern', highlighturl#default_pattern())
-    call matchadd(s:highlight_name(0), pattern, s:get('url_priority', 15))
+    call matchadd('HighlightUrl', pattern, s:get('url_priority', 15))
     if s:urlcursor
       call highlighturl#set_urlcursor_match()
     endif
@@ -97,7 +93,7 @@ function! highlighturl#set_urlcursor_match() abort
     silent! call matchdelete(s:match_id[bufnr])
   endif
   if s:get('enable', get(s:, 'enable', 1))
-    let name = s:highlight_name(&l:cursorline)
+    let name = &l:cursorline ? 'HighlightUrlCursor': 'HighlightUrl'
     let pattern = '\%' . line('.') . 'l' . s:get('pattern', highlighturl#default_pattern())
     let s:match_id[bufnr] = matchadd(name, pattern, s:get('url_cursor_priority', 20))
   endif

@@ -2,7 +2,7 @@
 " Filename: autoload/highlighturl.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2019/05/30 22:59:31.
+" Last Change: 2019/06/18 18:20:12.
 " =============================================================================
 
 let s:save_cpo = &cpo
@@ -16,7 +16,7 @@ endfunction
 
 function! highlighturl#default_pattern() abort
   return  '\v\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%('
-        \.'[&:#*@~%_\-=?!+;/.0-9A-Za-z]+%([.,;/?][&:#*@~%_\-=?!+/0-9A-Za-z]+|:\d+)*|'
+        \.'[&:#*@~%_\-=?!+;/0-9A-Za-z]+%([.,;/?][&:#*@~%_\-=?!+/0-9A-Za-z]+|:\d+)*|'
         \.'\([&:#*@~%_\-=?!+;/.0-9A-Za-z]*\)|\[[&:#*@~%_\-=?!+;/.0-9A-Za-z]*\]|'
         \.'\{%([&:#*@~%_\-=?!+;/.0-9A-Za-z]*|\{[&:#*@~%_\-=?!+;/.0-9A-Za-z]*\})\})+'
 endfunction

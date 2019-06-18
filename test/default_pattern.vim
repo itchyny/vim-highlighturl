@@ -5,6 +5,7 @@ function! s:suite.default_pattern()
   let test_cases = [
         \ ['example.com', ''],
         \ ['http://example.com', 'http://example.com'],
+        \ ['URL is http://example.com.', 'http://example.com'],
         \ ['(http://example.com)', 'http://example.com'],
         \ ['(http://example.com/sample/(foo_bar))', 'http://example.com/sample/(foo_bar)'],
         \ ['(http://example.com/sample/(foo_bar)baz)', 'http://example.com/sample/(foo_bar)baz'],

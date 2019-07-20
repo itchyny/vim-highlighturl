@@ -17,6 +17,7 @@ function! s:suite.default_pattern()
         \ ['https://example.com:9000/sample_sample?foo=bar&baz=qux#id,', 'https://example.com:9000/sample_sample?foo=bar&baz=qux#id'],
         \ ['https://example.com', 'https://example.com'],
         \ ['https://example.com/foo;', 'https://example.com/foo;'],
+        \ ['https://example.com/foo..bar', 'https://example.com/foo..bar'],
         \ ['ttp://example.com', 'ttp://example.com'],
         \ ['[ftp://www.example.com]', 'ftp://www.example.com'],
         \ ['git@github.com:sample/test,', 'git@github.com:sample/test'],

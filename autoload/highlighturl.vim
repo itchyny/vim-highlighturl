@@ -2,7 +2,7 @@
 " Filename: autoload/highlighturl.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2021/02/03 19:15:02.
+" Last Change: 2021/02/05 22:18:35.
 " =============================================================================
 
 let s:save_cpo = &cpo
@@ -16,10 +16,10 @@ endfunction
 
 function! highlighturl#default_pattern() abort
   return  '\v\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%('
-        \.'[&:#*@~%_\-=?!+;/0-9A-Za-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\-=?!+/0-9A-Za-z]+|:\d+|'
-        \.',%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9A-Za-z]+))*|'
-        \.'\([&:#*@~%_\-=?!+;/.0-9A-Za-z]*\)|\[[&:#*@~%_\-=?!+;/.0-9A-Za-z]*\]|'
-        \.'\{%([&:#*@~%_\-=?!+;/.0-9A-Za-z]*|\{[&:#*@~%_\-=?!+;/.0-9A-Za-z]*\})\})+'
+        \.'[&:#*@~%_\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\-=?!+/0-9a-z]+|:\d+|'
+        \.',%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|'
+        \.'\([&:#*@~%_\-=?!+;/.0-9a-z]*\)|\[[&:#*@~%_\-=?!+;/.0-9a-z]*\]|'
+        \.'\{%([&:#*@~%_\-=?!+;/.0-9a-z]*|\{[&:#*@~%_\-=?!+;/.0-9a-z]*\})\})+'
 endfunction
 
 function! highlighturl#get_url_highlight(cursor) abort

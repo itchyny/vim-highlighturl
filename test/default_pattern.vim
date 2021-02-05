@@ -28,6 +28,7 @@ function! s:suite.default_pattern()
         \ ['ttp://example.com', 'ttp://example.com'],
         \ ['[ftp://www.example.com]', 'ftp://www.example.com'],
         \ ['git@github.com:sample/test,', 'git@github.com:sample/test'],
+        \ ['HTTPS://EXAMPLE.COM', 'HTTPS://EXAMPLE.COM'],
         \ ]
   let pattern = highlighturl#default_pattern()
   for [str, expected] in test_cases

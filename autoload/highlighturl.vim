@@ -2,7 +2,7 @@
 " Filename: autoload/highlighturl.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2021/02/05 22:18:35.
+" Last Change: 2022/04/28 09:31:53.
 " =============================================================================
 
 let s:save_cpo = &cpo
@@ -40,7 +40,7 @@ function! highlighturl#set_highlight() abort
 endfunction
 
 function! highlighturl#set_url_highlight() abort
-  execute 'highlight HighlightUrl' highlighturl#get_url_highlight(0)
+  execute 'highlight default HighlightUrl' highlighturl#get_url_highlight(0)
 endfunction
 
 function! highlighturl#set_urlcursor_highlight() abort
@@ -50,7 +50,7 @@ function! highlighturl#set_urlcursor_highlight() abort
   let outstr = substitute(out, '\n', '', 'g')
   let cbg = matchstr(outstr, 'ctermbg=\S\+')
   let gbg = matchstr(outstr, 'guibg=\S\+')
-  execute 'highlight HighlightUrlCursor' highlighturl#get_url_highlight(1) cbg gbg
+  execute 'highlight default HighlightUrlCursor' highlighturl#get_url_highlight(1) cbg gbg
 endfunction
 
 function! highlighturl#delete_url_match() abort

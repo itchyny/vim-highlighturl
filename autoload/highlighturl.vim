@@ -55,7 +55,7 @@ endfunction
 
 function! highlighturl#delete_url_match() abort
   for m in getmatches()
-    if m.group ==# 'HighlightUrl' || m.group ==# 'HighlightUrlCursor'
+    if m.group ==? 'HighlightUrl' || m.group ==? 'HighlightUrlCursor'
       call matchdelete(m.id)
     endif
   endfor

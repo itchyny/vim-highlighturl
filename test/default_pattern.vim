@@ -27,6 +27,9 @@ function! s:suite.default_pattern()
         \ ['https://example.com?q=https://example.com', 'https://example.com?q=https://example.com'],
         \ ['ttp://example.com', 'ttp://example.com'],
         \ ['[ftp://www.example.com]', 'ftp://www.example.com'],
+        \ ['ftps://www.example.com', 'ftps://www.example.com'],
+        \ ['sftp://www.example.com', 'sftp://www.example.com'],
+        \ ['Invalid sftps scheme: adjust to ftps: sftps://www.example.com', 'ftps://www.example.com'],
         \ ['git@github.com:sample/test,', 'git@github.com:sample/test'],
         \ ['HTTPS://EXAMPLE.COM', 'HTTPS://EXAMPLE.COM'],
         \ ]
